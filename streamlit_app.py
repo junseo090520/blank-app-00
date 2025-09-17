@@ -18,23 +18,23 @@
 #    좌: 학생 데이터 내부 상관/분포, 우: 같은 시기 글로벌 기온 추세를 병렬 시각화합니다.
 #    Kaggle API 인증 필요(Secrets에 [kaggle] username/key). 레포에는 secrets.toml을 커밋하지 마세요.
 # =========================================================
-
 import os
 import streamlit as st
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 def _auth_kaggle():
-    # Streamlit secrets에서 가져오기
+    # 🔑 Streamlit Secrets에서 Kaggle 계정 정보 불러오기
     username = st.secrets["kaggle"]["username"]
     key = st.secrets["kaggle"]["key"]
 
+    # 🌍 Kaggle API에서 요구하는 환경변수로 등록
     os.environ["KAGGLE_USERNAME"] = username
     os.environ["KAGGLE_KEY"] = key
 
+    # 🚀 Kaggle API 인증
     api = KaggleApi()
     api.authenticate()
     return api
-
 import io
 import json
 import datetime as dt
